@@ -1,0 +1,64 @@
+// MediaWiki:Common.css
+
+#ca-edit {
+    display: none !important;
+}
+
+#ca-talk {
+    display: none !important;
+}
+
+.tab-bar .ul.side-nav {
+    background: rgb(128, 0, 192);
+}
+
+.inputSpan input.s4.createboxInput {
+   width: 23%;
+   margin: 3px;
+}
+
+.inputSpan input.s5.createboxInput {
+   width: 18%;
+   margin: 3px;
+}
+
+.inputSpan input.s6.createboxInput {
+   width: 15%;
+   margin: 3px;
+}
+
+.inputSpan input.s7.createboxInput {
+   width: 13%;
+   margin: 3px;
+}
+
+.inputSpan input.s10.createboxInput {
+   width: 9%;
+   margin: 3px;
+}
+
+.inputSpan input.createboxInput {
+ width: 100%;
+}
+
+.mw-category-generated {
+   display: none;
+}
+
+
+.drilldown-filters {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.empty {
+   text-align: center;
+   background-color: #FFB;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+

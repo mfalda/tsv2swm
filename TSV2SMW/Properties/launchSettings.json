@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TSV2SMW": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Chiave": "Valore"
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+Category:Towns						
+Boccon						
+Castelnuovo						
+Lovertino						
+Teolo						
+Valbona						
+Valnogaredo						
+Vo’ vecchio						
+Zovon						
+						
+Category:Locations|Random work location,Random home location	Parent:Towns	Coordinates[Geographic coordinates]:default				
+Location 1	Valbona	45.304273, 11.617985				
+Location 2	Vo’ vecchio	45.310099, 11.654521				
+Location 3	Valnogaredo	45.342917, 11.616592				
+Location 4	Vo’ vecchio	45.311908, 11.640605				
+Location 5	Castelnuovo	45.343662, 11.669345				
+Location 6	Lovertino	45.315815, 11.668858				
+Location 7	Castelnuovo	45.333026, 11.660636				
+Location 8	Boccon	45.327231, 11.643247				
+Location 9	Teolo	45.349201, 11.641326				
+Location 10	Teolo	45.343913, 11.641009				
+Location 11	Castelnuovo	45.350936, 11.663727				
+Location 12	Teolo	45.35121, 11.65559				
+Location 13	Boccon	45.328642, 11.653872				
+Location 14	Valbona	45.314687, 11.62228				
+Location 15	Boccon	45.327458, 11.632686				
+Location 16	Lovertino	45.309062, 11.662078				
+Location 17	Valbona	45.305367, 11.621349				
+Location 18	Vo’ vecchio	45.314715, 11.630387				
+Location 19	Vo’ vecchio	45.30347, 11.644193				
+Location 20	Castelnuovo	45.336202, 11.667497				
+Location 21	Teolo	45.335322, 11.657733				
+Location 22	Lovertino	45.302555, 11.662677				
+Location 23	Valnogaredo	45.325946, 11.616547				
+Location 24	Castelnuovo	45.330548, 11.669995				
+Location 25	Valnogaredo	45.317498, 11.619896				
+Location 26	Boccon	45.320782, 11.658582				
+Location 27	Teolo	45.345196, 11.639871				
+Location 28	Boccon	45.320637, 11.654082				
+Location 29	Teolo	45.342735, 11.653599				
+Location 30	Valnogaredo	45.333787, 11.622867				
+Location 31	Castelnuovo	45.330455, 11.666015				
+Location 32	Zovon	45.322128, 11.660366				
+Location 33	Valnogaredo	45.338708, 11.618931				
+Location 34	Teolo	45.335743, 11.638827				
+Location 35	Vo’ vecchio	45.302594, 11.6466				
+Location 36	Teolo	45.333605, 11.642495				
+Location 37	Zovon	45.318946, 11.670215				
+Location 38	Vo’ vecchio	45.307405, 11.657355				
+Location 39	Valnogaredo	45.348734, 11.625956				
+Location 40	Vo’ vecchio	45.314075, 11.63635				
+Location 41	Valnogaredo	45.317549, 11.624746				
+Location 42	Valnogaredo	45.324718, 11.625566				
+Location 43	Vo’ vecchio	45.305735, 11.657362				
+Location 44	Teolo	45.330841, 11.646262				
+Location 45	Valnogaredo	45.332787, 11.629003				
+Location 46	Castelnuovo	45.330276, 11.671151				
+Location 47	Castelnuovo	45.342748, 11.666371				
+Location 48	Boccon	45.319536, 11.639318				
+Location 49	Valnogaredo	45.323503, 11.618395				
+Location 50	Lovertino	45.313247, 11.667671				
+Location 51	Valnogaredo	45.336247, 11.616337				
+Location 52	Teolo	45.338464, 11.640869				
+Location 53	Teolo	45.338485, 11.656353				
+Location 54	Castelnuovo	45.350673, 11.670614				
+Location 55	Teolo	45.35012, 11.655355				
+Location 56	Teolo	45.340582, 11.648422				
+Location 57	Vo’ vecchio	45.308435, 11.635944				
+Location 58	Boccon	45.320286, 11.635299				
+Location 59	Teolo	45.349632, 11.641426				
+Location 60	Vo’ vecchio	45.310606, 11.64071				
+Location 61	Valnogaredo	45.340299, 11.616433				
+Location 62	Valnogaredo	45.32547, 11.626927				
+Location 63	Vo’ vecchio	45.311854, 11.648435				
+Location 64	Valnogaredo	45.320951, 11.616261				
+Location 65	Valbona	45.313271, 11.620573				
+Location 66	Lovertino	45.308729, 11.669465				
+Location 67	Vo’ vecchio	45.311328, 11.636591				
+Location 68	Vo’ vecchio	45.306231, 11.634544				
+Location 69	Boccon	45.322652, 11.635202				
+Location 70	Valnogaredo	45.33763, 11.619316				
+Location 71	Zovon	45.319084, 11.662075				
+Location 72	Vo’ vecchio	45.308011, 11.652845				
+Location 73	Zovon	45.320074, 11.663272				
+Location 74	Zovon	45.317444, 11.664428				
+Location 75	Castelnuovo	45.34369, 11.663428				
+Location 76	Castelnuovo	45.343167, 11.660131				
+Location 77	Teolo	45.33809, 11.649411				
+Location 78	Teolo	45.334968, 11.64222				
+Location 79	Teolo	45.347033, 11.65863				
+Location 80	Vo’ vecchio	45.313686, 11.653953				
+						
+Category:Anatomical parts						
+Head						
+Thorax						
+Abdomen						
+						
+Category:Symptoms locations|Symptoms locations	Parent:Anatomical parts	Coordinates[Geographic coordinates]:DBNS_Virus				
+cough	Thorax	45.204745648226584, -72.27508222384921				
+sore throat	Head	66.43842155871532, -86.33923691299987				
+conjunctivitis	Head	73.17250430704229, -94.77772972649025				
+headache	Head	79.77908459204296, -86.6916267575752				
+diarrhea	Abdomen	-24.05716758157885, -85.63602917854233				
+rhinitis	Head	70.17250430704229, -86.6916267575752				
+						
+Subpage:Positive/Positives						
+Group	Super-property	Property	Type	Domain	Options	Info
+-		Has Patient				
+Positives		Contact	Page			
+Positives		Type	Option	direct,indirect,household	Exclusive	
+Positives		Random location of contact	Hierarchy	Category:Locations		
+						
+Subpage:Sampling/Samplings						
+Group	Super-property	Property	Type	Domain	Options	Info
+-		Has Patient				
+Samplings		Number	Number	{{#expr: {{#explode: {{PAGENAME}} | | 1 }} * 1 }}	Computed	
+Samplings		Date	Date			
+Samplings		Interval	Number	{{#ask: [[Category:Samplings]][[Has Patient::{{{Has Patient}}}]][[Number::<{{{Number|}}}]] |?x |?y#ISO |format=agedelta| dist=1 |unit=d }}, ?x=Number, ?y=Date	Computed	in days
+Samplings		Result	Option	positive,negative	Exclusive	
+Samplings		Random score	Number	min=0;max=100		
+Samplings		Delta from last score	Number	{{#ask: [[Category:Samplings]][[Has Patient::{{{Has Patient}}}]][[Number::<{{{Number|}}}]] |?x |?y |format=agedelta| dist=1}}, ?x=Number, ?y=random score	Computed	
+Samplings		Random symptoms locations at sampling	Hierarchy	Category:Symptoms locations		
+						
+Section:Main						
+Group	Super-property	Property	Type	Domain	Options	Info
+General		Uid	Text			
+General		Household id	Text			
+General		Random home location	Hierarchy	Category:Locations		
+General		Random work location	Hierarchy	Category:Locations		
+General		Age group	Number		Integer	
+General		Gender	Option	M,F	Exclusive	
+General		Consensus	File			
+Symptoms		Fever	Boolean	Yes,No		
+Symptoms		fever temperature	Number			
+Symptoms		Cough	Option	Yes,No	Exclusive	
+Symptoms		Sore throat	Option	Yes,No	Exclusive	
+Symptoms		Malaise	Option	Yes,No	Exclusive	
+Symptoms		Headache	Option	Yes,No	Exclusive	
+Symptoms		Diarrhea	Option	Yes,No	Exclusive	
+Symptoms		Conjunctivitis	Option	Yes,No	Exclusive	
+Symptoms		Other symptoms	List	gastroenteritis,immunosuppression,scarlet fever,ocular ailment,otitis,rhinitis,flu 02 01		
+Symptoms		Symptoms locations	Hierarchy	Category:Symptoms locations		
+Symptoms		Symptomatic at first sampling	Option	Yes,No	Exclusive	
+Symptoms		Symptomatic at follow up	Option	Yes,No	Exclusive	
+Symptoms		Symptomatic	Option	Yes,No	Exclusive	
+Samples		First sampling	List	negative,negativized,positive,positivized	Exclusive	
+Samples		Second sampling	List	negative,negativized,positive,positivized	Exclusive	
+Samples		Collected samplings	Text	{{#ask: [[Category:Samplings]][[Has Patient::{{PAGENAME}}]] | ?result | format=plainlist |limit=2 |link=none |headers=hide |searchlabel= |mainlabel=- }}	Computed	
+Samples		Positive	Option	Yes,No	Exclusive	
+Samples		Mean random score	Number	{{#expr: {{#ask: [[Category:Samplings]][[Has Patient::{{PAGENAME}}]] |?x |format=sum |limit=2 }} / 2.0 }}, ?x=Random score	Computed	
+Status		Hospitalized	Option	Yes,No	Exclusive	
+Status		Deceased	Option	Yes,No	Exclusive	
+Status		First symptoms date	Date			
+Status		Clinical condition at hospitalization	List	mild,paucisymptomatic,severe	Exclusive	
+Status		First hospitalization date	Date			
+Status		Discharge date	Date			
+Status		Death date	Date			
+Contacts		Positives	Subpage	Subpage:Positive/Positives		
+Contacts		Samplings	Subpage	Subpage:Sampling/Samplings		

@@ -1,0 +1,26 @@
+  <page>
+    <title>Category:«CNAME»</title>
+    <ns>14</ns>
+    <id>«ID»</id>
+    <revision>
+      <timestamp>«TIMESTAMP»</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <comment>Imported version.</comment>
+      <text xml:space="preserve">
+«FNAME»
+
+«FILTERS»
+
+«TEMPLATE»
+
+«PGROUP»
+
+«SUPER-CATEGORIES»
+      </text>
+    </revision>
+  </page>

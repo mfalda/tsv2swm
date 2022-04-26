@@ -1,0 +1,28 @@
+<page>
+  <title>Property:«PNAME»</title>
+  <ns>102</ns>
+  <id>«ID»</id>
+  <revision>
+    <timestamp>«TIMESTAMP»</timestamp>
+    <contributor>
+      <username>WikiSysop</username>
+      <id>1</id>
+    </contributor>
+    <model>wikitext</model>
+    <format>text/x-wiki</format>
+    <comment>Imported version.</comment>
+    <text xml:space="preserve">
+This property has type [[Has type::«TYPE»]].
+
+«SAMEAS»
+
+«GRAPH»
+
+«SUB-PROPERTY»
+
+«CONSTRAINTS»
+
+«PGROUP»
+    </text>
+  </revision>
+</page>

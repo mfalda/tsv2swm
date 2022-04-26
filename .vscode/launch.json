@@ -1,0 +1,52 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Schema virus demo",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/TSV2SMW/bin/Debug/netcoreapp6/TSV2SMW.dll",
+            "args": [
+                "-s" /* schema */,
+                "-i" /* TSV ->     */, "schema_Virus.tsv",
+                "-o" /*     -> XML */, "schema_Virus.xml",
+                "-w", "Virus demo",
+                "-f", "Patient",
+                "-c", "Patients",
+                "-l", "en"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "Data virus demo",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/TSV2SMW/bin/Debug/netcoreapp6/TSV2SMW.dll",
+            "args": [
+                "-b" /* initial ID */, "361",
+                "-i" /* TSV ->     */, "data_Virus_pos.tsv",
+                "-o" /*     -> XML */, "data_Virus_pos.xml",
+                "-w", "Virus demo",
+                "-f", "Patient",
+                "-c", "Patients",
+                "-l", "en"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+             "name": ".NET Core Attach",
+             "type": "coreclr",
+             "request": "attach",
+             "processId": "${command:pickProcess}"
+        }
+     ]
+ }

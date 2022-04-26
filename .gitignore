@@ -1,0 +1,9 @@
+bin/
+obj/
+*.xml
+!templates/*
+*.xlsx
+*.xlsb
+*.zip
+.~lock.*
+

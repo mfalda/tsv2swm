@@ -1,0 +1,27 @@
+  <page>
+    <title>«INAME»</title>
+    <ns>0</ns>
+    <id>«ID»</id>
+    <revision>
+      <timestamp>«TIMESTAMP»</timestamp>
+      <contributor>
+        <username>«USERNAME»</username>
+        <id>«USERID»</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <comment>Imported version.</comment>
+      <text xml:space="preserve">{{«TNAME»
+«PARAMETERS»
+}}
+
+«TLIST»
+
+«MESSAGE»
+
+«PAGES»
+
+«CATEGORIES»
+      </text>
+    </revision>
+  </page>
