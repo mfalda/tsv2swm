@@ -1,4 +1,4 @@
 #!/bin/bash
 
-dotnet publish --sc -r debian-x64 TSV2SMW
+dotnet publish --configuration Release  /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -r debian-x64 TSV2SMW
 

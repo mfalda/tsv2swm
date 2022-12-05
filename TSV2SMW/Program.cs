@@ -512,7 +512,11 @@ namespace TSV2SMW
             var parser = new CommandLine.Parser(with => with.HelpWriter = null);
             var parserResult = parser.ParseArguments<Options>(args);
             parserResult
-                .WithParsed<Options>(options => Run(options))
+                .WithParsed<Options>(options => {
+                    Console.WriteLine("TSV2SMW " + GlobalConsts.VERSION);
+                    Console.WriteLine(GlobalConsts.COPYRIGHT);
+                    Run(options);
+                })
                 .WithNotParsed(errs => DisplayHelp<Options>(parserResult, errs));
         }
 
