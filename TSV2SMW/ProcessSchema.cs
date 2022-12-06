@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -22,7 +22,6 @@ using System.Linq;
 using System.Diagnostics;
 
 using OD;
-using libc.translation;
 
 namespace TSV2SMW
 {
@@ -105,6 +104,15 @@ namespace TSV2SMW
        }
 
         // TODO: do not use the nexus trick
+        /// <summary>
+        /// A method to generate a page with univariate plots for a (set of) properties.
+        /// </summary>
+        /// <param name="name">the name of the page.</param>
+        /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
+        /// <param name="inputType">the input type of the property.</param>
+        /// <param name="withCats">whether to consider categorical facets.</param>
+        /// <param name="onServer">whether to generate a code for server processing.</param>
+        /// <returns>a tuple with the title and the content of the page.</returns>
         public static (string, string) generateUnivariateChartPage(string name, SectionsDict sections, InputType inputType, bool withCats, bool onServer)
         {
             string res = "";
@@ -181,6 +189,15 @@ namespace TSV2SMW
             return (title, res);
         }
 
+        /// <summary>
+        /// A method to generate a page with bivariate plots for a pair of properties.
+        /// </summary>
+        /// <param name="catName">the name of the category.</param>
+        /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
+        /// <param name="inputType1">the input type of the first property.</param>
+        /// <param name="inputType2">the input type of the second property.</param>
+        /// <param name="onServer">whether to generate a code for server processing.</param>
+        /// <returns>the content of the page.</returns>
         static string generateBivariateChartPage(string catName, SectionsDict sections, InputType inputType1, InputType inputType2, bool onServer)
         {
             string res = "";
@@ -240,6 +257,12 @@ namespace TSV2SMW
             return res;
         }
 
+        /// <summary>
+        /// A method to generate a page with a timeline.
+        /// </summary>
+        /// <param name="catName">the name of the category.</param>
+        /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
+        /// <returns>a tuple with the title and the content of the page.</returns>
         static Tuple<string, string> generateTimelinePage(string catName, SectionsDict sections)
         {
             string res = "";
@@ -277,6 +300,12 @@ namespace TSV2SMW
             return new Tuple<string, string>(res, props);
         }
 
+        /// <summary>
+        /// A method to generate a page with a plot for each property.
+        /// </summary>
+        /// <param name="catName">the name of the category.</param>
+        /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
+        /// <returns>the content of the page.</returns>
         static string generateChartsPage(string catName, SectionsDict sections)
         {
             string res = "";
@@ -317,6 +346,13 @@ namespace TSV2SMW
             return res;
         }
 
+        /// <summary>
+        /// A method to generate a page with a map for each property.
+        /// </summary>
+        /// <param name="pageName">the name of the page.</param>
+        /// <param name="fields">a list with the fields to map.</param>
+        /// <param name="layerName">the name of the map overlay (it must be configured in the Leaflet map extension).</param>
+        /// <param name="clickable">whether to generate clickable tooltips or not.</returns>
         public static string getMapCode(string pageName, List<string> fields, string layerName, bool clickable)
         {
             string fieldsStr = string.Join("\n", from field in fields select $" |?{field}");
@@ -350,6 +386,12 @@ namespace TSV2SMW
 ";
         }
 
+        /// <summary>
+        /// A method to generate a page with a category tree.
+        /// </summary>
+        /// <param name="name">the name of the page.</param>
+        /// <param name="mainCategory">the top category.</param>
+        /// <returns>the content of the page.</returns>
         public static string createListPagesInCat(string name, string mainCategory)
         {
             if (mainCategory != "" && mainCategory != name)
@@ -358,6 +400,13 @@ namespace TSV2SMW
                 return "";
         }
 
+        /// <summary>
+        /// A method to generate a page with a set of ASK queries for exporting data.
+        /// </summary>
+        /// <param name="catName">the name of the category.</param>
+        /// <param name="templateFields">a list with the fields to export.</param>
+        /// <param name="auxTemplates">a list with the auxiliary categories templates.</param>
+        /// <returns>the content of the page.</returns>
         static string generateExportLinks(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
         {
             string res = "\n==Excel spreadsheets==\n";
@@ -553,6 +602,13 @@ namespace TSV2SMW
             return res;
         }
 
+        /// <summary>
+        /// A method to generate the PropChainsHelper configuration.
+        /// </summary>
+        /// <param name="catName">the name of the category.</param>
+        /// <param name="templateFields">a list with the fields to export.</param>
+        /// <param name="auxTemplates">a list with the auxiliary categories templates.</param>
+        /// <returns>the configuration to be placed in the LocalSettings.php file.</returns>
         static string createPropChainHelperConf(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
         {
             string res = "$pchCatLevels = [\n";
