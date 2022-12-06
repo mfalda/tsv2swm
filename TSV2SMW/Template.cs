@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -25,6 +25,10 @@ using System.Linq;
 
 namespace TSV2SMW
 {
+
+    /// <summary>
+    /// Class <c>SimpleTemplate</c> models a MediaWiki basic template used in embedded templates.
+    /// </summary>
     public class SimpleTemplate : Page
     {
         public string body;
@@ -35,6 +39,16 @@ namespace TSV2SMW
 
         public SimpleTemplate() {}
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the template.</param>
+        /// <param name="message1">an initial message for the users.</param>
+        /// <param name="body1">the body of the template.</param>
+        /// <param name="linkProperty1">the link property.</param>
+        /// <param name="categories1">a list of categories associated with the template.</param>
+        /// <param name="usedModules1">a set of user modules (Scribunto) used in the template.</param>
         public SimpleTemplate(int id1, string name1, string message1, string body1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1)
         {
             id = id1;
@@ -44,7 +58,7 @@ namespace TSV2SMW
             linkProperty = linkProperty1;
             categories = categories1;
 
-/*
+/* examples:
 {{#arraydefine: srs22 | {{#srs22: {{{Quesito 1|}}} | {{{Quesito 2|}}} | {{{Quesito 3|}}} | {{{Quesito 4|}}} | {{{Quesito 5|}}} | {{{Quesito 6|}}} | {{{Quesito 7|}}} | {{{Quesito 8|}}} | {{{Quesito 9|}}} | {{{Quesito 10|}}} | {{{Quesito 11|}}} | {{{Quesito 12|}}} | {{{Quesito 13|}}} | {{{Quesito 14|}}} | {{{Quesito 15|}}} | {{{Quesito 16|}}} | {{{Quesito 17|}}} | {{{Quesito 18|}}} | {{{Quesito 19|}}} | {{{Quesito 20|}}} | {{{Quesito 21|}}} | {{{Quesito 22|}}} }} }}
 
 {{#arraydefine: indiciD | {{#dyn_indices: {{{Fless T12 ‹x1›|}}} | {{{Fless T12 ‹x2›|}}} | {{{Fless T12 ‹x3›|}}} | {{{Fless S2 ‹x1›|}}} | {{{Fless S2 ‹x2›|}}} | {{{Fless S2 ‹x3›|}}} | {{{Est T12 ‹x1›|}}} | {{{Est T12 ‹x2›|}}} | {{{Est T12 ‹x3›|}}} | {{{Est S2 ‹x1›|}}} | {{{Est S2 ‹x2›|}}} | {{{Est S2 ‹x3›|}}} | {{{Inclinazione dx ‹x1›|}}} | {{{Inclinazione dx ‹x2›|}}} | {{{Inclinazione dx ‹x3›|}}} | {{{Inclinazione sx ‹x1›|}}} | {{{Inclinazione sx ‹x2›|}}} | {{{Inclinazione sx ‹x3›|}}} }} }}
@@ -59,6 +73,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the category in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML()
         {
             name = Program.normalizeNames(name);
@@ -77,12 +95,26 @@ namespace TSV2SMW
 
     }
 
+    /// <summary>
+    /// Class <c>Template</c> models a MediaWiki full-fledged template.
+    /// </summary>
     public class Template : SimpleTemplate
     {
         public List<TemplateField> fieldsT;
         public bool needSubobject;
         public new static string templateXML;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the template.</param>
+        /// <param name="message1">an initial message for the users.</param>
+        /// <param name="fields1">the fields (parameters) of the template.</param>
+        /// <param name="linkProperty1">the link property.</param>
+        /// <param name="categories1">a list of categories associated with the template.</param>
+        /// <param name="usedModules1">a set of user modules (Scribunto) used in the template.</param>
+        /// <param name="needSubobject1">whether it is part of a sub-object.</param>
         public Template(int id1, string name1, string message1, List<TemplateField> fields1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1, bool needSubobject1)
         {
             id = id1;
@@ -120,6 +152,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the category in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public new string ToXML()
         {
             string tableClass = "wikitable";

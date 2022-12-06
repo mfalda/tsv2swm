@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -22,6 +22,9 @@ using System.Linq;
 
 namespace TSV2SMW
 {
+    /// <summary>
+    /// Class <c>FormField</c> models a MediaWiki field in an embedded form.
+    /// </summary>
     public class FormField
     {
         string label;
@@ -46,6 +49,17 @@ namespace TSV2SMW
         bool isPositive;
         bool isRestricted;
 
+/// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="label1">the label of the field.</param>
+        /// <param name="type1">the type of the field.</param>
+        /// <param name="property1">the property associated to the field.</param>
+        /// <param name="domain1">the domain of the field (ranges, modalities, et c.).</param>
+        /// <param name="options1">the specified options for the field.</param>
+        /// <param name="info1">the tooltip to be added near the field label.</param>
+        /// <param name="showOnSelect1">whether to show it conditionally according to selections on another field.</param>
+        /// <param name="mainForm1">the parent form used for creating URL for additional sub-forms.</param>
         public FormField(string label1, InputType type1, string property1, string domain1, List<OptionType> options1, string info1, string showOnSelect1, string mainForm1)
         {
             label = label1;
@@ -97,6 +111,9 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the field in a string.
+        /// </summary>
         public override string ToString()
         {
             string inputType = "";

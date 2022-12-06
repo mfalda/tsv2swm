@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -23,6 +23,9 @@ using System.Linq;
 
 namespace TSV2SMW
 {
+    /// <summary>
+    /// Class <c>Category</c> models a MediaWiki category page.
+    /// </summary>
     public class Category : Page
     {
         public new static string templateXML;
@@ -33,6 +36,16 @@ namespace TSV2SMW
         bool isPropertyGroup;
         new List<TemplateField> fields;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="mainCategory1">the main category (for creating hierarchies).</param>
+        /// <param name="template1">the name of the template used for generating the XML.</param>
+        /// <param name="parentCategories1">a comma-separated list of parent categories.</param>
+        /// <param name="fields1">a list of fields used to create the Semantic Drilldown code.</param>
+        /// <param name="isPropertyGroup1">is this category used for grouping properties?</param>
         public Category(int id1, string name1, string mainCategory1, string template1, string parentCategories1, Form form1, List<TemplateField> fields1, bool isPropertyGroup1)
         {
             id = id1;
@@ -51,6 +64,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the category in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML()
         {
             string formName = "";

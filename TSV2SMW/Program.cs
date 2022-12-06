@@ -36,6 +36,7 @@ namespace TSV2SMW
         public const string IP_ADDRESS = "172.25.0.181";
         public const string DB = "Virus";
 
+        // position in the input TSV
         public const int GROUP = 0;
         public const int SUPER_PROPERTY = 1;
         public const int PROPERTY = 2;
@@ -48,6 +49,7 @@ namespace TSV2SMW
         public const int CATEGORY = 0;
         public const int PARENT_CATEGORY = 1;
 
+        // gneric positions for slices
         public const int FIRST_PART = 0;
         public const int SECOND_PART = 1;
         public const int THIRD_PART = 2;
@@ -196,6 +198,7 @@ namespace TSV2SMW
         }
     }
 
+    // command-line options
     public class Options
     {
         [Option('s', "schema", Required = false, HelpText = "Process the schema file.")]
@@ -252,7 +255,7 @@ namespace TSV2SMW
         LIST,
         [Description("Number")] // my extension
         NUMBER,
-        [Description("Vector")]
+        [Description("Vector")] // my extension
         VECTOR,
         [Description("File")]
         FILE,
@@ -327,6 +330,9 @@ namespace TSV2SMW
         VECTOR
     }
 
+    /// <summary>
+    /// Class <c>AttributesHelperExtension</c> is used for transforming Enums to strings and vice versa.
+    /// </summary>
     public static class AttributesHelperExtension
     {
         public static T FromDescription<T>(string enumString)
@@ -354,6 +360,9 @@ namespace TSV2SMW
         }
     }
 
+    /// <summary>
+    /// Struct <c>MainLine</c> models an input line of a TSV file.
+    /// </summary>
     public struct MainLine
     {
         public GroupId grp;
@@ -367,6 +376,17 @@ namespace TSV2SMW
         public string info;
         public string showOnSelect;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="grp1">the group of the property.</param>
+        /// <param name="superProperty1">the name of the parent property.</param>
+        /// <param name="property1">a name of the property.</param>
+        /// <param name="type1">the type of the property.</param>
+        /// <param name="domain1">the domain of the property (modalities, ranges, et c.).</param>
+        /// <param name="options1">a comma-separated list of options.</param>
+        /// <param name="info1">a tooltip to show near the label.</param>
+        /// <param name="showOnSelect1">the property visibility depands on another field.</param>
         public MainLine(GroupId grp1, string superProperty1, string property1, string type1, string domain1, string options1, string info1, string showOnSelect1)
         {
             grp = grp1;
@@ -407,21 +427,36 @@ namespace TSV2SMW
         }
     }
 
+    /// <summary>
+    /// Class <c>LangManager</c> is used for managing the localization.
+    /// </summary>
     public class LangManager {
         ILocalizer localizer;
         string langString;
         Language language;
 
+        /// <summary>
+        /// Method that gets the language string (it, en).
+        /// </summary>
+        /// <returns>the language string.</return>
         public string GetLanguageString()
         {
             return langString;
         }
 
+        /// <summary>
+        /// Method that gets the language.
+        /// </summary>
+        /// <returns>the language Enum.</return>
         public Language GetLanguage()
         {
             return language;
         }
 
+        /// <summary>
+        /// Method that sets the language.
+        /// </summary>
+        /// <param name="lang1">the desired language Enum.</param>
         public void SetLanguage(Language lang1)
         {
             language = lang1;
@@ -430,6 +465,11 @@ namespace TSV2SMW
             localizer = new Localizer(source, "it");
         }
 
+        /// <summary>
+        /// Method that gets the localized string starting from the English one.
+        /// </summary>
+        /// <param name="key">the string in English.</param>
+        /// <returns>the localized string.</return>
         public string Get(string key)
         {
             return localizer.Get(langString, key);
@@ -440,6 +480,11 @@ namespace TSV2SMW
     {
         public static LangManager langManager;
 
+        // <summary>
+        /// A function for replacing HTML entities with the correct UTF-8 characters.
+        /// <param name="text">the input text.</param>
+        /// <returns>the the converted text.</returns>
+        /// </summary>
         public static string convertEntities(string text)
         {
             return HttpUtility.HtmlEncode(text)
@@ -452,6 +497,11 @@ namespace TSV2SMW
                 //.Replace("&#39;", "'"); // ' -> ´ (it is used in wiki texts and JS, DO NOT MODIFY in ´)
         }
 
+        // <summary>
+        /// A function for capitalize the names.
+        /// <param name="str">the input name.</param>
+        /// <returns>the normalized name.</returns>
+        /// </summary>
         public static string capitalize(string str)
         {
             if (str.Length == 0)
@@ -462,6 +512,11 @@ namespace TSV2SMW
                 return char.ToUpper(str[0]) + str.Substring(1);
         }
 
+        // <summary>
+        /// A function for normalizing the names.
+        /// <param name="name">the input name.</param>
+        /// <returns>the normalized name.</returns>
+        /// </summary>
         public static string normalizeNames(string name)
         {
             // standard namespaces are not modified
@@ -498,6 +553,11 @@ namespace TSV2SMW
         /* ID and NAME tokens must begin with a letter ([A-Za-z]) and may be followed by 
          * any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), 
          * colons (":"), and periods ("."). */
+        // <summary>
+        /// A function for normalizing the IDs.
+        /// <param name="name">the input ID.</param>
+        /// <returns>the normalized ID.</returns>
+        /// </summary>
         public static string normalizeIDs(string name)
         {
             // standard namespaces are not modified
@@ -524,6 +584,10 @@ namespace TSV2SMW
             return res;
         }
 
+        // <summary>
+        /// The entry point that parses the command-line options.
+        /// <param name="args">the list with the command line arguments.</param>
+        /// </summary>
         static void Main(string[] args)
         {
             var parser = new CommandLine.Parser(with => with.HelpWriter = null);
@@ -537,6 +601,11 @@ namespace TSV2SMW
                 .WithNotParsed(errs => DisplayHelp<Options>(parserResult, errs));
         }
 
+        // <summary>
+        /// Shows the command syntax and help.
+        /// <param name="result">needed parameter.</param>
+        /// <param name="errs">needed parameter.</param>
+        /// </summary>
         static void DisplayHelp<T>(ParserResult<T> result, IEnumerable<Error> errs)
         {  
             var helpText = CommandLine.Text.HelpText.AutoBuild(result, h =>
@@ -548,6 +617,11 @@ namespace TSV2SMW
             }, e => e);
             Console.WriteLine(helpText);
         }
+
+        // <summary>
+        /// The common method for running the three sub-programs.
+        /// <param name="o">the structure with the command-line options.</param>
+        /// </summary>
         private static void Run(Options o)
         {
             if (o.ProcessSchema) {

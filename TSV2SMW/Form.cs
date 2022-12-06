@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -28,6 +28,9 @@ namespace TSV2SMW
 {
     using SectionsDict = OrderedDictionary<SectionId, OrderedDictionary<GroupId, List<MainLine>>>;
 
+    /// <summary>
+    /// Class <c>CoreForm</c> models a MediaWiki basic form used in embedded templates.
+    /// </summary>
     public class CoreForm {
 
         string template;
@@ -35,6 +38,13 @@ namespace TSV2SMW
         string mainTemplate;
         string fields;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="template1">the name of the template linked to the form.</param>
+        /// <param name="fields1">a comma-separated list of form fields.</param>
+        /// <param name="multiple1">is this form repeated in an embedded template?</param>
+        /// <param name="mainTemplate1">the main template (for referring back to the parent).</param>
         public CoreForm(string template1, List<MainLine> fields1, bool multiple1, string mainTemplate1)
         {
             template = template1;
@@ -47,6 +57,10 @@ namespace TSV2SMW
                                             field.options, field.info, field.showOnSelect, "").ToString());
         }
 
+        /// <summary>
+        /// A method to serialize the category in a string, used in embedded templates.
+        /// </summary>
+        /// <returns>the textual representation.</returns>
         public override string ToString()
         {
             var add = Program.langManager.Get("Add");
@@ -61,13 +75,25 @@ namespace TSV2SMW
 
     }
 
-    public class SimpleForm : Page
+    /// <summary>
+    /// Class <c>SimpleForm</c> models a MediaWiki simple form used in repeated lists.
+    /// </summary>
+     public class SimpleForm : Page
      {
         public new static string templateXML;
         public string template;
         string text;
         new string fields;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="message1">an initial message for the users.</param>
+        /// <param name="text1">a shorter text for the users.</param>
+        /// <param name="fields1">the list of the form fields.</param>
+        /// <param name="template1">the template linked to the form.</param>
         public SimpleForm(int id1, string name1, string message1, string text1, List<MainLine> fields1, string template1)
         {
             id = id1;
@@ -91,6 +117,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the category in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML()
         {
             name = Program.normalizeNames(name);
@@ -105,6 +135,9 @@ namespace TSV2SMW
 
     }
 
+    /// <summary>
+    /// Class <c>Form</c> models a full general MediaWiki form.
+    /// </summary>
     public class Form : SimpleForm
      {
         public new static string templateXML;
@@ -115,6 +148,18 @@ namespace TSV2SMW
         string category;
         public SectionsDict sections;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="message1">an initial message for the users.</param>
+        /// <param name="sections1">a dictionary of sections for partitioning the form (usually tabs).</param>
+        /// <param name="template1">the template linked to the form.</param>
+        /// <param name="subForms1">a list of sub-forms, tipically embedded in templates.</param>
+        /// <param name="noteText1">the text above the notes text area.</param>
+        /// <param name="category1">the category associated to the pages generated with the form.</param>
+        /// <param name="linkProperty1">the property that links the main category with the secondary categories (tipically used for longitudinal data).</param>
         public Form(int id1, string name1, string message1, SectionsDict sections1, string template1, List<CoreForm> subForms1, string noteText1, string category1, string linkProperty1)
                 : base(id1, name1, message1, "", new List<MainLine>(), template1)
         {
@@ -203,6 +248,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the category in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public new string ToXML()
         {
             name = Program.normalizeNames(name);

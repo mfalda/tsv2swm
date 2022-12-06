@@ -45,6 +45,9 @@ namespace TSV2SMW
         MODULE = 828
     }
 
+    /// <summary>
+    /// Class <c>TemplateCall</c> models a MediaWiki template call.
+    /// </summary>
     public class TemplateCall
     {
         string id;
@@ -52,6 +55,13 @@ namespace TSV2SMW
         public bool isList;
         List<ParamField> fields;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="templateName1">the template to invoke.</param>
+        /// <param name="isList1">whether to call is as a list or not.</param>
+        /// <param name="fields1">the actual parameters.</param>
         public TemplateCall(string id1, string templateName1, bool isList1, List<ParamField> fields1)
         {
             id = id1;
@@ -60,6 +70,10 @@ namespace TSV2SMW
             fields = fields1;
         }
 
+        /// <summary>
+        /// A method to get a comma-separated string of the fields (excluding the ID).
+        /// </summary>
+        /// <returns>the string with the concatenated fields.</returns>
         public string getFields()
         {
             return string.Join(", ", from field in fields
@@ -67,6 +81,10 @@ namespace TSV2SMW
                                     select field.Item2);
         }
 
+        /// <summary>
+        /// A method to serialize the property in a string ready to be inserted in the template call.
+        /// </summary>
+        /// <returns>the string representation.</returns>
         public override string ToString()
         {
             string fieldsS = string.Join("\n", from field in fields
@@ -79,11 +97,20 @@ namespace TSV2SMW
     }}}}";
         }
 
+        /// <summary>
+        /// A method to get a tab-separated string of the headers.
+        /// </summary>
+        /// <param name="headers1">the list of headers.</param>
+        /// <returns>the string representation.</returns>
         public static string Headers(List<string> headers1)
         {
             return "ID\t" + string.Join("\t", headers1) + "\n";
         }
 
+        /// <summary>
+        /// A method to get a tab-separated string of the fields.
+        /// </summary>
+        /// <returns>the string representation.</returns>
         public string ToTSV()
         {
             return  id + "\t" + string.Join("\t", from field in fields select field.Item2) + "\n";
@@ -91,6 +118,9 @@ namespace TSV2SMW
 
     }
 
+    /// <summary>
+    /// Class <c>RawPage</c> models a MediaWiki page with a single message.
+    /// </summary>
     public class RawPage
     {
         public int id;
@@ -103,6 +133,15 @@ namespace TSV2SMW
 
         public RawPage() {}
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="namespace1">the namespece of the page.</param>
+        /// <param name="fileName1">the filename to embed.</param>
+        /// <param name="text1">a text to be shown to the user.</param>
+        /// <param name="params1">a list of parameters that wil instantiate the template placeholders.</param>
         public RawPage(int id1, string name1, NamespaceType namespace1, string fileName1, string text1, List<string> params1)
         {
             id = id1;
@@ -123,6 +162,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the property in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML()
         {
             if (text == "") {
@@ -180,6 +223,9 @@ namespace TSV2SMW
         }
     }
 
+    /// <summary>
+    /// Class <c>Page</c> models a MediaWiki full-fledged page.
+    /// </summary>
     public class Page
     {
         public int id;
@@ -197,6 +243,18 @@ namespace TSV2SMW
 
         public Page() {}
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="message1">a text to be shown to the user.</param>
+        /// <param name="fields1">the list of fields to be written in the page (they are the parameters of the template).</param>
+        /// <param name="templateName1">the template used to build the page.</param>
+        /// <param name="subTemplates1">a list of sub templates (embedded templates).</param>
+        /// <param name="mainCategory1">the main category to be assigned to the page.</param>
+        /// <param name="categories1">a comma-separated list of additional categories of the page.</param>
+        /// <param name="categoryProps1">just a placeholder for future extensions.</param>
         public Page(int id1, string name1, string message1, List<ParamField> fields1, string templateName1, List<TemplateCall> subTemplates1, string mainCategory1, string categories1, List<(string, string)> categoryProps1)
         {
             id = id1;
@@ -232,6 +290,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to clear headers and specify a new parent page.
+        /// </summary>
+        /// <param name="parentPage1">a list of additional fields.</param>
         public static void resetHeaders(string parentPage1)
         {
             if (headers != null) {
@@ -244,6 +306,11 @@ namespace TSV2SMW
                 parentPage = "";
         }
 
+        /// <summary>
+        /// A method to append a set of fields.
+        /// </summary>
+        /// <param name="fields1">a list of additional fields.</param>
+        /// <param name="subTemplates1">a list of sub-templates to be used with the new fields.</param>
         public void add(List<ParamField> fields1, List<TemplateCall> subTemplates1)
         {
             headers.AddRange(from field in fields1 select field.Item1.ToString());
@@ -251,6 +318,13 @@ namespace TSV2SMW
             subTemplates = subTemplates1;
         }
 
+        /// <summary>
+        /// A method to insert a NA symbol in the case of missing values.
+        /// </summary>
+        /// <param name="inputString">the input string.</param>
+        /// <param name="mandatory">whether the value is mandatory.</param>
+        /// <param name="fill">whether the value is to be filled with a NA symbol or not.</param>
+        /// <returns>the string representation.</returns>
         private string manageNA(string inputString, bool mandatory, bool fill)
         {
             if (inputString == "_")
@@ -261,6 +335,10 @@ namespace TSV2SMW
                 return inputString;
         }
 
+        /// <summary>
+        /// A method to serialize the property in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML(bool fill, int userID=1, string userName="WikiSysop")
         {
             var listFields = new Dictionary<string, string>();
@@ -316,11 +394,20 @@ namespace TSV2SMW
                               .Replace("«CATEGORIES»", categories);
         }
 
+        /// <summary>
+        /// A method to get a tab-separated string of the headers.
+        /// </summary>
+        /// <returns>the string representation.</returns>
         public static string Headers()
         {
             return "ID\t" + string.Join("\t", headers) + "\n";
         }
 
+        /// <summary>
+        /// A method to get a tab-separated string of the fields.
+        /// </summary>
+        /// <param name="fill">whether the value is to be filled with a NA symbol or not.</param>
+        /// <returns>the string representation.</returns>
         public string ToTSV(bool fill)
         {
             return name + "\t" + string.Join("\t", from field in fields

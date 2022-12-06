@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -23,6 +23,9 @@ using System.Diagnostics;
 
 namespace TSV2SMW
 {
+    /// <summary>
+    /// Class <c>TemplateField</c> models a MediaWiki field in an embedded template.
+    /// </summary>
     public struct TemplateField
     {
         public SectionId sec;
@@ -51,6 +54,14 @@ namespace TSV2SMW
         public string moduleVariable;
         bool isSubPageOrListField;
 
+        /// <summary>
+        /// Function for parsing a formula in ASK syntax with parameters specified separately after the formula itself
+        /// </summary>
+        /// <param name="expression">the input string to pe parsed.</param>
+        /// <param name="linkPropName">the link property for writing property chains.</param>
+        /// <param name="properties">the set of properties, to check that they actually exist.</param>
+        /// <param name="variables">the set of variables to be istantiated.</param>
+        /// <returns>the formula rewritten in the final ASK format.</return>
         private static string parseFormula(string expression, string linkPropName, SortedSet<string> properties, SortedSet<string> variables)
         {
             // parse the parameters
@@ -104,6 +115,23 @@ namespace TSV2SMW
             return formula;
         }
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="sec1">the template section to be associated with the field.</param>
+        /// <param name="grp1">the group to be associated with the field.</param>
+        /// <param name="label1">the label of the field.</param>
+        /// <param name="property1">the property associated to the field.</param>
+        /// <param name="parameterName1">the name for the field parameter (usually the property name).</param>
+        /// <param name="type1">the type of the field.</param>
+        /// <param name="domain1">the domain of the field (ranges, modalities, et c.).</param>
+        /// <param name="info1">the tooltip to be added near the field label.</param>
+        /// <param name="showOnSelect1">whether to show it conditionally according to selections on another field.</param>
+        /// <param name="category1">the category the field belongs to.</param>
+        /// <param name="options1">the specified options for the field.</param>
+        /// <param name="properties1">the set of valid properties used for parsing.</param>
+        /// <param name="variables1">the set of variables used for instantiation in parsing.</param>
+        /// <param name="linkPropName1">the link property used in computed fields parsing.</param>
         public TemplateField(SectionId sec1, GroupId grp1, string label1, string property1, string parameterName1, 
             InputType type1, string domain1, string info1, string showOnSelect1, string category1, List<OptionType> options1, 
             SortedSet<string> properties1, SortedSet<string> variables1, string linkPropName1)
@@ -175,6 +203,13 @@ namespace TSV2SMW
                 moduleVariable = "";
         }
 
+        /// <summary>
+        /// A method to serialize the field in a string.
+        /// </summary>
+        /// <param name="templateName">name of the referring template to be passed in the links for additional (sub-)forms.</param>
+        /// <param name="inTable">whether the context is a table (in this case provide the needed auxiliary decorations).</param>
+        /// <param name="inTemplate">whether the context is a template (when true, pipes must be escaped).</param>
+        /// <returns>the textual representation.</returns>
         public string ToString(string templateName, bool inTable, bool inTemplate)
         {
             var res = ("", "");

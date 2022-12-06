@@ -6,7 +6,7 @@ For an example of TSV files for schema and data, please look at the `schema_Viru
 
 Data TSV are simple tables in which each row contains an identifier, a parent page when referring to a subpage, and then the set of properties declared in the schema. Note that as now these files are still not processed together, therefore constraints are not enforced, nor names checked against the schema. This will be one of the many planned enhancements.
 
-A demo site will be available soon.
+A [demo site](https://dbnsdemo.neuroscienze.unipd.it/wiki/Main_Page) is available.
 
 
 ## Installation
@@ -14,6 +14,13 @@ A demo site will be available soon.
 You should be at ease with .NET Core in order to work with this tool (and also with Semantic MediaWiki), however there are three _scripts_: `publish_win64.sh` `publish_win64.bat` `publish_linux64.sh` to create self-contained executables for Windows (from Linux and Windows) and Windows. Once created the file, it can be run from the same root directory; note that there are auxiliary directories with templates and othe files needed to run the program. In Linux refer to [this site](https://docs.microsoft.com/en-us/dotnet/core/install/linux).
 
 The generated schema is more than a simple set of properties, forms, and templates: It allows for interfacing with R using widgets, and the previous [Docker Compose](https://github.com/mfalda/docker-smw) configuration contains a demo setup.
+
+
+## Structure of the code
+
+The code uses XML snippets (templates) for each type of MediaWiki namespace, namely categories, forms, properties and MediaWiki templates, plus a series of other auxiliary types. There are placeholders that will be filled dynamically according to the actual inputs during execution.
+
+There is also a set of simple pages to be added directly, and they are customized according to the desired (natural) language. Their parametrization it kept at minimum, being possible only two placeholders for singular (forms) and plural (categories) names.
 
 
 ## TSV schema grammar

@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with tsv2smw.  If not, see <http://www.gnu.org/licenses/>.
+    along with tsv2smw. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
@@ -22,7 +22,9 @@ using System.Collections.Generic;
 
 namespace TSV2SMW
 {
-
+    /// <summary>
+    /// Class <c>Property</c> models a MediaWiki property page.
+    /// </summary>
     class Property : Page
     {
         public InputType type;
@@ -35,6 +37,16 @@ namespace TSV2SMW
         bool isVector;
         bool isDefined;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="id1">a progressive ID.</param>
+        /// <param name="name1">the name of the category.</param>
+        /// <param name="superProperty1">the possible parent property (for creating hierarchies).</param>
+        /// <param name="type1">the type of the property.</param>
+        /// <param name="constraints1">a comma-separated list of contraints coming from the input domain.</param>
+        /// <param name="options1">a set of options specified in input.</param>
+        /// <param name="propertyGroup1">the group of the property (tipically rendered as a tab).</param>
         public Property(int id1, string name1, string superProperty1, InputType type1, string constraints1, List<OptionType> options1, string propertyGroup1)
         {
             id = id1;
@@ -61,6 +73,10 @@ namespace TSV2SMW
             }
         }
 
+        /// <summary>
+        /// A method to serialize the property in XML.
+        /// </summary>
+        /// <returns>the XML representation.</returns>
         public string ToXML()
         {
             bool isSimpleList = false;
