@@ -127,6 +127,7 @@ namespace TSV2SMW
         public string name;
          public NamespaceType nameSpace;
         public string fileName;
+        string basePath;
         public string text;
         public string templateXML;
         List<string> @params;
@@ -142,7 +143,8 @@ namespace TSV2SMW
         /// <param name="fileName1">the filename to embed.</param>
         /// <param name="text1">a text to be shown to the user.</param>
         /// <param name="params1">a list of parameters that wil instantiate the template placeholders.</param>
-        public RawPage(int id1, string name1, NamespaceType namespace1, string fileName1, string text1, List<string> params1)
+        /// <param name="basePath1">the path where auxiary templates are stored (for unit tests, mainly).</param>
+        public RawPage(int id1, string name1, NamespaceType namespace1, string fileName1, string text1, List<string> params1, string basePath1 = ".")
         {
             id = id1;
             name = name1;
@@ -150,6 +152,7 @@ namespace TSV2SMW
             fileName = fileName1;
             text = text1;
             @params = params1;
+            basePath = basePath1;
 
             var sb = new StringBuilder();
             string model = "raw";
@@ -157,7 +160,7 @@ namespace TSV2SMW
                 model = "js";
             else if (fileName1.EndsWith("css"))
                 model = "css";
-            using (var reader = new StreamReader($"templates/{model}_page.xml")) {
+            using (var reader = new StreamReader(basePath + $"/templates/{model}_page.xml")) {
                 templateXML = reader.ReadToEnd();
             }
         }
@@ -165,17 +168,18 @@ namespace TSV2SMW
         /// <summary>
         /// A method to serialize the property in XML.
         /// </summary>
+        /// <param name="test">in unit tests do not convert HTML entities again.</param>
         /// <returns>the XML representation.</returns>
-        public string ToXML()
+        public string ToXML(bool test = false)
         {
             if (text == "") {
                 string dir = "";
                 string lang = Program.langManager.GetLanguageString();
 
-                if (File.Exists($"simple_pages/{lang}/{fileName}")) 
+                if (File.Exists(basePath + $"/simple_pages/{lang}/{fileName}")) 
                     dir = lang + "/";
 
-                using (var reader = new StreamReader($"simple_pages/{dir}{fileName}")) {
+                using (var reader = new StreamReader(basePath + $"/simple_pages/{dir}{fileName}")) {
                     string line;
                     var sb = new StringBuilder();
                     bool firstLine = true;
@@ -206,7 +210,9 @@ namespace TSV2SMW
                     text = text1;
                 }
             }
-            text = Program.convertEntities(text);
+            if (!test)
+                text = Program.convertEntities(text);
+
             var parts = name.Split(":");
             if (parts.Length > 1) {
                 string ns = parts[GlobalConsts.FIRST_PART].Trim();
@@ -255,7 +261,9 @@ namespace TSV2SMW
         /// <param name="mainCategory1">the main category to be assigned to the page.</param>
         /// <param name="categories1">a comma-separated list of additional categories of the page.</param>
         /// <param name="categoryProps1">just a placeholder for future extensions.</param>
-        public Page(int id1, string name1, string message1, List<ParamField> fields1, string templateName1, List<TemplateCall> subTemplates1, string mainCategory1, string categories1, List<(string, string)> categoryProps1)
+        /// <param name="basePath">the path where auxiary templates are stored (for unit tests, mainly).</param>
+        
+        public Page(int id1, string name1, string message1, List<ParamField> fields1, string templateName1, List<TemplateCall> subTemplates1, string mainCategory1, string categories1, List<(string, string)> categoryProps1, string basePath = ".")
         {
             id = id1;
             name = name1;
@@ -284,7 +292,7 @@ namespace TSV2SMW
             categoryProps = categoryProps1;
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/instance.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/instance.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }

@@ -17,12 +17,3 @@
 ** Export data|Export data
 * SEARCH
 * TOOLBOX
-
-<hr />
-
-[[Visible to::whitelist|'''Visible to: ''']]
-[[Visible to group::viewers|viewers]]
-[[Visible to group::editors|editors]]
-
-[[Editable by::whitelist|'''Editable by: ''']]
-[[Editable by group::editors|editors]]

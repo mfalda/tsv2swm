@@ -34,6 +34,7 @@ namespace TSV2SMW
         public string body;
         public string linkProperty;
         public new static string templateXML;
+        public new static string basePath;
         public List<string> categories;
         public string usedModules;
 
@@ -49,7 +50,8 @@ namespace TSV2SMW
         /// <param name="linkProperty1">the link property.</param>
         /// <param name="categories1">a list of categories associated with the template.</param>
         /// <param name="usedModules1">a set of user modules (Scribunto) used in the template.</param>
-        public SimpleTemplate(int id1, string name1, string message1, string body1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1)
+        /// <param name="basePath1">the path where auxliary templates are stored (for unit tests, mainly).</param>
+        public SimpleTemplate(int id1, string name1, string message1, string body1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1, string basePath1 = ".")
         {
             id = id1;
             name = name1;
@@ -57,6 +59,7 @@ namespace TSV2SMW
             body = body1;
             linkProperty = linkProperty1;
             categories = categories1;
+            basePath = basePath1;
 
 /* examples:
 {{#arraydefine: srs22 | {{#srs22: {{{Quesito 1|}}} | {{{Quesito 2|}}} | {{{Quesito 3|}}} | {{{Quesito 4|}}} | {{{Quesito 5|}}} | {{{Quesito 6|}}} | {{{Quesito 7|}}} | {{{Quesito 8|}}} | {{{Quesito 9|}}} | {{{Quesito 10|}}} | {{{Quesito 11|}}} | {{{Quesito 12|}}} | {{{Quesito 13|}}} | {{{Quesito 14|}}} | {{{Quesito 15|}}} | {{{Quesito 16|}}} | {{{Quesito 17|}}} | {{{Quesito 18|}}} | {{{Quesito 19|}}} | {{{Quesito 20|}}} | {{{Quesito 21|}}} | {{{Quesito 22|}}} }} }}
@@ -67,7 +70,7 @@ namespace TSV2SMW
                                               select $"{{{{#arraydefine: {u} | {{{{#{u}: | ... }}}} }}}}");
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/simple_template.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/simple_template.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }
@@ -115,12 +118,10 @@ namespace TSV2SMW
         /// <param name="categories1">a list of categories associated with the template.</param>
         /// <param name="usedModules1">a set of user modules (Scribunto) used in the template.</param>
         /// <param name="needSubobject1">whether it is part of a sub-object.</param>
-        public Template(int id1, string name1, string message1, List<TemplateField> fields1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1, bool needSubobject1)
+        /// <param name="basePath1">the path where auxliary templates are stored (for unit tests, mainly).</param>
+        public Template(int id1, string name1, string message1, List<TemplateField> fields1, string linkProperty1, List<string> categories1, HashSet<string> usedModules1, bool needSubobject1, string basePath1 = ".")
+            : base(id1, name1, message1, "", linkProperty1, categories1, usedModules1, basePath1)
         {
-            id = id1;
-            name = name1;
-            message = message1;
-            linkProperty = linkProperty1;
             fieldsT = fields1;
             needSubobject = needSubobject1;
 
@@ -146,7 +147,7 @@ namespace TSV2SMW
             categories = categories1;
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/template.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/template.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }

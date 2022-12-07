@@ -62,7 +62,7 @@ namespace TSV2SMW
         /// <param name="properties">the set of properties, to check that they actually exist.</param>
         /// <param name="variables">the set of variables to be istantiated.</param>
         /// <returns>the formula rewritten in the final ASK format.</return>
-        private static string parseFormula(string expression, string linkPropName, SortedSet<string> properties, SortedSet<string> variables)
+        public static string parseFormula(string expression, string linkPropName, SortedSet<string> properties, SortedSet<string> variables)
         {
             // parse the parameters
             var f = expression.Split(", ");

@@ -46,7 +46,8 @@ namespace TSV2SMW
         /// <param name="parentCategories1">a comma-separated list of parent categories.</param>
         /// <param name="fields1">a list of fields used to create the Semantic Drilldown code.</param>
         /// <param name="isPropertyGroup1">is this category used for grouping properties?</param>
-        public Category(int id1, string name1, string mainCategory1, string template1, string parentCategories1, Form form1, List<TemplateField> fields1, bool isPropertyGroup1)
+        /// <param name="basePath">the path where auxiary templates are stored (for unit tests, mainly).</param>
+        public Category(int id1, string name1, string mainCategory1, string template1, string parentCategories1, Form form1, List<TemplateField> fields1, bool isPropertyGroup1, string basePath = ".")
         {
             id = id1;
             name = name1;
@@ -58,7 +59,7 @@ namespace TSV2SMW
             isPropertyGroup = isPropertyGroup1;
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/category.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/category.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }

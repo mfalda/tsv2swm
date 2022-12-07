@@ -94,7 +94,8 @@ namespace TSV2SMW
         /// <param name="text1">a shorter text for the users.</param>
         /// <param name="fields1">the list of the form fields.</param>
         /// <param name="template1">the template linked to the form.</param>
-        public SimpleForm(int id1, string name1, string message1, string text1, List<MainLine> fields1, string template1)
+        /// <param name="basePath">the path where auxliary templates are stored (for unit tests, mainly).</param>
+        public SimpleForm(int id1, string name1, string message1, string text1, List<MainLine> fields1, string template1, string basePath = ".")
         {
             id = id1;
             name = name1;
@@ -111,7 +112,7 @@ namespace TSV2SMW
             fields += "|}\n{{{end template}}}";
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/simple_form.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/simple_form.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }
@@ -160,8 +161,9 @@ namespace TSV2SMW
         /// <param name="noteText1">the text above the notes text area.</param>
         /// <param name="category1">the category associated to the pages generated with the form.</param>
         /// <param name="linkProperty1">the property that links the main category with the secondary categories (tipically used for longitudinal data).</param>
-        public Form(int id1, string name1, string message1, SectionsDict sections1, string template1, List<CoreForm> subForms1, string noteText1, string category1, string linkProperty1)
-                : base(id1, name1, message1, "", new List<MainLine>(), template1)
+        /// <param name="basePath">the path where auxiary templates are stored (for unit tests, mainly).</param>
+        public Form(int id1, string name1, string message1, SectionsDict sections1, string template1, List<CoreForm> subForms1, string noteText1, string category1, string linkProperty1, string basePath = ".")
+                : base(id1, name1, message1, "", new List<MainLine>(), template1, basePath)
         {
             id = id1;
             name = name1;
@@ -242,7 +244,7 @@ namespace TSV2SMW
             noteText = noteText1;
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/form.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/form.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }

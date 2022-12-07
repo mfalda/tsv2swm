@@ -433,7 +433,18 @@ namespace TSV2SMW
     public class LangManager {
         ILocalizer localizer;
         string langString;
+        string basePath;
         Language language;
+
+        /// <summary>
+        /// The constructor of the class.
+        /// </summary>
+        /// <param name="basePath1">the path of the localizatin file (mainly for unit tests).</param>
+        public LangManager(string basePath1 = ".")
+        {
+            basePath = basePath1;
+            SetLanguage(Language.English);
+        }
 
         /// <summary>
         /// Method that gets the language string (it, en).
@@ -461,7 +472,7 @@ namespace TSV2SMW
         {
             language = lang1;
             langString = (lang1 == Language.Italiano) ? "it" : "en";
-            var source = new LocalizationSource(new FileInfo("localization.json"), LocalizationSourcePropertyCaseSensitivity.CaseInsensitive);
+            var source = new LocalizationSource(new FileInfo(basePath + "/localization.json"), LocalizationSourcePropertyCaseSensitivity.CaseInsensitive);
             localizer = new Localizer(source, "it");
         }
 
