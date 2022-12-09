@@ -34,7 +34,7 @@ namespace TSV2SMW
         public string body;
         public string linkProperty;
         public new static string templateXML;
-        public new static string basePath;
+        public static string basePath;
         public List<string> categories;
         public string usedModules;
 

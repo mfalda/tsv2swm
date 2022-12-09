@@ -26,6 +26,7 @@ using OD;
 namespace TSV2SMW
 {
     using ParamField = ValueTuple<(GroupId param, HeaderOptions options), string>;
+    using GroupsDict = OrderedDictionary<GroupId, List<MainLine>>;
     using SectionsDict = OrderedDictionary<SectionId, OrderedDictionary<GroupId, List<MainLine>>>;
 
     enum ParseSchemaState
@@ -198,7 +199,7 @@ namespace TSV2SMW
         /// <param name="inputType2">the input type of the second property.</param>
         /// <param name="onServer">whether to generate a code for server processing.</param>
         /// <returns>the content of the page.</returns>
-        static string generateBivariateChartPage(string catName, SectionsDict sections, InputType inputType1, InputType inputType2, bool onServer)
+        public static string generateBivariateChartPage(string catName, SectionsDict sections, InputType inputType1, InputType inputType2, bool onServer)
         {
             string res = "";
             var compatibleProperties1 = new List<string>();
@@ -263,7 +264,7 @@ namespace TSV2SMW
         /// <param name="catName">the name of the category.</param>
         /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
         /// <returns>a tuple with the title and the content of the page.</returns>
-        static Tuple<string, string> generateTimelinePage(string catName, SectionsDict sections)
+        public static Tuple<string, string> generateTimelinePage(string catName, SectionsDict sections)
         {
             string res = "";
             string props = "";
@@ -306,7 +307,7 @@ namespace TSV2SMW
         /// <param name="catName">the name of the category.</param>
         /// <param name="sections">the sections containing the fields to plot (they will be sected according to thei types).</param>
         /// <returns>the content of the page.</returns>
-        static string generateChartsPage(string catName, SectionsDict sections)
+        public static string generateChartsPage(string catName, SectionsDict sections)
         {
             string res = "";
             foreach (var section in sections.Values) {
@@ -407,7 +408,7 @@ namespace TSV2SMW
         /// <param name="templateFields">a list with the fields to export.</param>
         /// <param name="auxTemplates">a list with the auxiliary categories templates.</param>
         /// <returns>the content of the page.</returns>
-        static string generateExportLinks(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
+        public static string generateExportLinks(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
         {
             string res = "\n==Excel spreadsheets==\n";
 
@@ -609,7 +610,7 @@ namespace TSV2SMW
         /// <param name="templateFields">a list with the fields to export.</param>
         /// <param name="auxTemplates">a list with the auxiliary categories templates.</param>
         /// <returns>the configuration to be placed in the LocalSettings.php file.</returns>
-        static string createPropChainHelperConf(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
+        public static string createPropChainHelperConf(string catName, List<TemplateField> templateFields, List<Template> auxTemplates)
         {
             string res = "$pchCatLevels = [\n";
             res += $"  '{catName}' => 0,\n";
@@ -886,7 +887,7 @@ $pchLinkProps = [
                         state = ParseSchemaState.SUBPAGE;
                         currSection = new SectionId("MAIN");
                         sections.Clear();
-                        sections.Add(currSection, new OrderedDictionary<GroupId, List<MainLine>>());
+                        sections.Add(currSection, new GroupsDict());
                     }
                     else if (values[GlobalConsts.FIRST_PART].Contains("Category:")) {
                         var values1 = values[GlobalConsts.FIRST_PART].Split(':');
@@ -960,7 +961,7 @@ $pchLinkProps = [
                             isFirstSection = false;
                         }
                         if (!sections.ContainsKey(currSection))
-                            sections.Add(currSection, new OrderedDictionary<GroupId, List<MainLine>>());
+                            sections.Add(currSection, new GroupsDict());
                         currSubPage = "";
                         currList = "";
                         currCat = "";

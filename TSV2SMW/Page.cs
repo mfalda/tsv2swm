@@ -333,7 +333,7 @@ namespace TSV2SMW
         /// <param name="mandatory">whether the value is mandatory.</param>
         /// <param name="fill">whether the value is to be filled with a NA symbol or not.</param>
         /// <returns>the string representation.</returns>
-        private string manageNA(string inputString, bool mandatory, bool fill)
+        public static string manageNA(string inputString, bool mandatory, bool fill)
         {
             if (inputString == "_")
                 return "";
