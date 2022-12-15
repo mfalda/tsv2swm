@@ -59,8 +59,7 @@ namespace UnitTests
         {
             string name = "MediaWiki:Sidebar";
             var result = new RawPage(1, name, NamespaceType.MEDIAWIKI, "sidebar_param.md", "", new List<string>{}, GetProjectPath("."));
-
-            output.WriteLine("This is output from ReadPanelMenu_is_OK: '{0}'", result.ToXML());
+            //output.WriteLine("This is output from ReadPanelMenu_is_OK: '{0}'", result.ToXML());
 
             string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
             Assert.Equal($@" <page>
@@ -110,7 +109,7 @@ namespace UnitTests
       </text>
     </revision>
   </page>
-", result.ToXML(true), false, true, true);
+", result.ToXML(false), false, true, true);
         }
 
         [Fact]
@@ -161,8 +160,7 @@ namespace UnitTests
         public void TemplateField_is_OK()
         {
             string result = new TemplateField(new SectionId("1"), new GroupId("Group 1"), "Property 1", "Prop_1", "ParamProp_1", InputType.NUMBER, "min=0, max=100", "info about Property 1", "", "Cat of Prop_1", new List<OptionType> { OptionType.POSITIVE }, new SortedSet<string>(), new SortedSet<string>(), "").ToString("Template 1", false, false);
-
-            output.WriteLine("This is output from TemplateField_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from TemplateField_is_OK: '{0}'", result);
 
             Assert.Equal(@"'''[[Property:Prop_1|Property 1]]'''{{#info: info about Property 1|note}}: [[Prop_1::Category:{{{ParamProp_1|}}}|{{{ParamProp_1|}}}]]
 ", result, false, true, true);
@@ -175,7 +173,6 @@ namespace UnitTests
             var tf2 = new TemplateField(new SectionId("Section 2"), new GroupId("Group 2"), "Property 2", "Prop_2", "ParamProp_2", InputType.DATE, "min=0, max=100", "info about Property 2", "", "Cat of Prop_2", new List<OptionType>(), new SortedSet<string>(), new SortedSet<string>(), "");
 
             var result = new Template(1, "Template 1", "msg", new List<TemplateField>() { tf1, tf2 }, "Has Link", new List<string> { "Category 1" }, new HashSet<string>(), true, GetProjectPath(".")).ToXML();
-
             //output.WriteLine("This is output from Template_is_OK: '{0}'", result);
 
             string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
@@ -287,8 +284,7 @@ __NOEDITSECTION__
             ParamField field2 = new ParamField((new GroupId("elem 2"), new HeaderOptions(true, true, "elem2")), "2");
 
             string result = new Page(1, "Page 1", "message", new List<ParamField> { field1, field2 }, "Patient", new List<TemplateCall>(), "MainCat", "Cat1", new List<(string, string)>(), GetProjectPath(".")).ToXML(true);
-
-            output.WriteLine("This is output from Page_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from Page_is_OK: '{0}'", result);
 
             string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
             Assert.Equal($@"  <page>
@@ -344,7 +340,7 @@ message
         public void Capitalize_is_OK()
         {
             var capitalized = Program.capitalize("maria");
-            output.WriteLine("This is output from Capitalize_is_OK: '{0}'", capitalized);
+            //output.WriteLine("This is output from Capitalize_is_OK: '{0}'", capitalized);
 
             Assert.Equal("Maria", capitalized); 
         }
@@ -353,7 +349,7 @@ message
         public void ID_Normalization_is_OK()
         {
             var normalizedID = Program.normalizeIDs("Test (1-2-3): 4 [5]");
-            output.WriteLine("This is output from ID_Normalization_is_OK: '{0}'", normalizedID);
+            //output.WriteLine("This is output from ID_Normalization_is_OK: '{0}'", normalizedID);
 
             Assert.Equal("Test_-1-2-3-:_4_-5-", normalizedID);
         }
@@ -362,7 +358,7 @@ message
         public void Name_Normalization_is_OK()    
         {
             var normalizedName = Program.normalizeNames("Test (1-2-3).4 [5]");
-            output.WriteLine("This is output from Name_Normalization_is_OK: '{0}'", normalizedName);
+            //output.WriteLine("This is output from Name_Normalization_is_OK: '{0}'", normalizedName);
 
             Assert.Equal("Test ⟮1-2-3⟯·4 ⟮5⟯", normalizedName);
         }
@@ -371,8 +367,7 @@ message
         public void CoreForm_is_OK()    
         {
             string result = new CoreForm("Template 1", new List<MainLine>(), false, "Patient").ToString();
-
-            output.WriteLine("This is output from CoreForm_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from CoreForm_is_OK: '{0}'", result);
 
             Assert.Equal(@"
     {{{for template|Template 1|multiple|add button text=Add Template 1|embed in field=Patient[Template 1]}}}
@@ -386,8 +381,7 @@ message
         public void SimpleForm_is_OK()    
         {
             string result = new SimpleForm(1, "Name 1", "Message 1", "Text 1", new List<MainLine>(), "Template 1", GetProjectPath(".")).ToXML();
-
-            output.WriteLine("This is output from SimpleForm_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from SimpleForm_is_OK: '{0}'", result);
 
             string timeStamp = System.DateTime.UtcNow.ToString  ("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
             Assert.Equal(@"  <page>
@@ -440,7 +434,7 @@ Text 1
             ParamField field2 = new ParamField((new GroupId("elem 2"), new HeaderOptions(true, true, "elem2")), "2");
 
             string result = new TemplateCall("TemplateCall1", "Template_name", true, new List<ParamField>() { field1, field2 }).ToString();
-            output.WriteLine("This is output from TemplateCall_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from TemplateCall_is_OK: '{0}'", result);
 
             Assert.Equal(@"
     {{Template_name
@@ -457,8 +451,7 @@ Text 1
 
             var tc = new TemplateCall("TemplateCall1", "Template_name", true, new List<ParamField>() { field1, field2 });
             string result = tc.getFields();
-
-            output.WriteLine("This is output from TemplateCall_getFields_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from TemplateCall_getFields_is_OK: '{0}'", result);
 
             Assert.Equal("Field 1, Field 2", result, false, true, true);
         }
@@ -468,7 +461,7 @@ Text 1
         public void TemplateCall_Headers_is_OK()    
         {
             string result = TemplateCall.Headers(new List<string> { "Header 1", "Header 2" });
-            output.WriteLine("This is output from TemplateCall_Headers_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from TemplateCall_Headers_is_OK: '{0}'", result);
 
             Assert.Equal("ID\tHeader 1\tHeader 2\n", result, false, true, true);
         }
@@ -481,7 +474,7 @@ Text 1
             ParamField field2 = new ParamField((new GroupId("elem 2"), new HeaderOptions(true, true, "elem2")), "2");
 
             string result = new TemplateCall("TemplateCall1", "Template_name", true, new List<ParamField>() { field1, field2 }).ToTSV();
-            output.WriteLine("This is output from TemplateCall_ToTSV_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from TemplateCall_ToTSV_is_OK: '{0}'", result);
             
             Assert.Equal("TemplateCall1\t1\t2\n", result, false, true, true);
         }
@@ -499,7 +492,7 @@ Text 1
 
             page.add(new List<ParamField> { field1 }, new List<TemplateCall>() { tc3 });
             string result = page.ToXML(false);
-            output.WriteLine("This is output from Page_Add_Fields_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from Page_Add_Fields_is_OK: '{0}'", result);
 
             string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
             Assert.Equal(@"  <page>
@@ -543,7 +536,7 @@ message
         public void manageNA_is_OK(string inputString, bool mandatory, bool fill, string res)    
         {
             string result = Page.manageNA(inputString, mandatory, fill);
-            output.WriteLine("This is output from manageNA_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from manageNA_is_OK: '{0}'", result);
 
             Assert.Equal(res, result);
         }
@@ -563,7 +556,7 @@ message
             };
 
             var result = Program.generateUnivariateChartPage("Page 1", sections, InputType.NUMBER, true, true);
-            output.WriteLine("This is output from generateUnivariateChartPage_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from generateUnivariateChartPage_is_OK: '{0}'", result);
 
             Assert.Equal("Property distribution", result.Item1, false, true, true);
             Assert.Equal(@"{{#widget:ShinyPlotSrv
@@ -590,7 +583,7 @@ message
             };
 
             string result = Program.generateBivariateChartPage("Page 1", sections, InputType.NUMBER, InputType.TEXT, true);
-            output.WriteLine("This is output from generateBivariateChartPage_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from generateBivariateChartPage_is_OK: '{0}'", result);
 
             Assert.Equal(@"{{#widget:ShinyPlotSrv |prop1_label=|prop1_data=Prop 1
   |prop2_label=|prop2_data=Prop 2
@@ -614,7 +607,7 @@ message
             };
 
             var result = Program.generateTimelinePage("Timeline 1", sections);
-            output.WriteLine("This is output from generateTimelinePage_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from generateTimelinePage_is_OK: '{0}'", result);
 
             Assert.Equal(@"{{#formlink:form=Timeline|link text=EditProperty|}}
 
@@ -647,7 +640,7 @@ message
             };
 
             string result = Program.generateChartsPage("Patients", sections);
-            output.WriteLine("This is output from generateChartsPage_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from generateChartsPage_is_OK: '{0}'", result);
 
             Assert.Equal(@"
 ==Group 11==
@@ -670,7 +663,7 @@ message
         public void getMapCode_is_OK()    
         {
             string result = Program.getMapCode("Maps", new List<string>(), "DBNS_layer", true);
-            output.WriteLine("This is output from getMapCode_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from getMapCode_is_OK: '{0}'", result);
 
             Assert.Equal(@"
 {{#ask: [[Maps]]
@@ -698,7 +691,7 @@ message
         public void createListPagesInCat_is_OK()    
         {
             string result = Program.createListPagesInCat("MainCat", "Patients");
-            output.WriteLine("This is output from createListPagesInCat_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from createListPagesInCat_is_OK: '{0}'", result);
 
             Assert.Equal("\n\n{{#categorytree:{{PAGENAME}}|mode=all|showcount=on}}", result, false, true, true);
         }
@@ -718,7 +711,7 @@ message
             var auxT2 = new Template(1, "Template 2", "msg", new List<TemplateField>() { auxTF21, auxTF22 }, "Has Link", new List<string> { "Category 1" }, new HashSet<string>(), true, GetProjectPath("."));
 
             string result = Program.generateExportLinks("Patients", new List<TemplateField>() { tf1, tf2 }, new List<Template> { auxT1, auxT2 });
-            output.WriteLine("This is output from generateExportLinks_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from generateExportLinks_is_OK: '{0}'", result);
 
             Assert.Equal(@"
 ==Excel spreadsheets==
@@ -847,7 +840,7 @@ message
             var t1 = new Template(1, "Template 1", "msg", new List<TemplateField>() { tf1, tf2 }, "Has Link", new List<string> { "Category 1" }, new HashSet<string>(), true, GetProjectPath("."));
 
             var result = Program.createPropChainHelperConf("Patients", new List<TemplateField>() { auxTF1, auxTF2 }, new List<Template>() { t1 });
-            output.WriteLine("This is output from createPropChainHelperConf_is_OK: '{0}'", result);
+            //output.WriteLine("This is output from createPropChainHelperConf_is_OK: '{0}'", result);
 
             Assert.Equal(@"$pchCatLevels = [
   'Patients' => 0,
@@ -869,9 +862,8 @@ $pchLinkProps = [
         [Fact]
         public void SimpleTemplate_is_OK()    
         {
-            var result = new SimpleTemplate(1, "Name 1", "message", "body", "Has Link", new List<string>() { "Cat 1", "Cat 2" }, new HashSet<string>(), GetProjectPath(".")).ToXML();
-            
-            output.WriteLine("This is output from SimpleTemplate_is_OK: '{0}'", result);
+            var result = new SimpleTemplate(1, "Name 1", "message", "body", "Has Link", new List<string>() { "Cat 1", "Cat 2" }, new HashSet<string>(), GetProjectPath(".")).ToXML();           
+            //output.WriteLine("This is output from SimpleTemplate_is_OK: '{0}'", result);
 
             string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
             Assert.Equal(@"  <page>
