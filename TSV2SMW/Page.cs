@@ -125,7 +125,7 @@ namespace TSV2SMW
     {
         public int id;
         public string name;
-         public NamespaceType nameSpace;
+        public NamespaceType nameSpace;
         public string fileName;
         string basePath;
         public string text;
@@ -262,7 +262,6 @@ namespace TSV2SMW
         /// <param name="categories1">a comma-separated list of additional categories of the page.</param>
         /// <param name="categoryProps1">just a placeholder for future extensions.</param>
         /// <param name="basePath">the path where auxiary templates are stored (for unit tests, mainly).</param>
-        
         public Page(int id1, string name1, string message1, List<ParamField> fields1, string templateName1, List<TemplateCall> subTemplates1, string mainCategory1, string categories1, List<(string, string)> categoryProps1, string basePath = ".")
         {
             id = id1;

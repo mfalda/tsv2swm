@@ -25,6 +25,11 @@ namespace UnitTests
             Program.langManager = new LangManager(GetProjectPath("."));
         }
 
+        static string removeNewLines(string text)
+        {
+            return text.Replace("\r\n", "").Replace("\n", "");
+        }
+
         public static string GetProjectPath(string relativePath)
         {
             var codeBaseUrl = new Uri(Assembly.GetExecutingAssembly().Location);
@@ -154,6 +159,47 @@ namespace UnitTests
         [Fact]
         public void Property_is_OK()
         {
+            var prop1 = new Property(1, "property 1", "Super-property 1", InputType.NUMBER, "min=0, max=100", new List<OptionType> { OptionType.POSITIVE }, "Group 1", GetProjectPath("."));
+            //output.WriteLine("This is output from Property_is_OK: '{0}'", prop1.ToXML());
+
+            string timeStamp = System.DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
+
+            Assert.Equal(removeNewLines($@"<page>
+  <title>Property:property 1</title>
+  <ns>102</ns>
+  <id>1</id>
+  <revision>
+    <timestamp>{timeStamp}</timestamp>
+    <contributor>
+      <username>WikiSysop</username>
+      <id>1</id>
+    </contributor>
+    <model>wikitext</model>
+    <format>text/x-wiki</format>
+    <comment>Imported version.</comment>
+    <text xml:space=""preserve"">
+This property has type [[Has type::Number]].
+
+&lt;div class=""toccolours mw-collapsible mw-collapsed"" style=""width:800px; overflow:auto;""&gt;
+    &lt;div style=""font-weight:bold;line-height:1.6;""&gt;Distribution of the property&lt;/div&gt;
+    &lt;div class=""mw-collapsible-content""&gt;
+{{{{#widget:ShinyPlotSrv
+  |prop1_label=Property|prop1_data=property 1
+  |prop2_label=
+|prop3_label=|prop3_data=
+  |plot=barsSrvAPI|title=Property distribution
+}}}}
+    &lt;/div&gt;
+&lt;/div&gt;
+
+Subproperty of [[Subproperty of::Super-property 1]]
+
+[[Allows value::&gt;0]]
+
+[[Category: Group 1]]
+    </text>
+  </revision>
+</page>"), removeNewLines(prop1.ToXML()), false, true, true);
         }
 
         [Fact]

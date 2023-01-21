@@ -165,9 +165,6 @@ namespace TSV2SMW
         public Form(int id1, string name1, string message1, SectionsDict sections1, string template1, List<CoreForm> subForms1, string noteText1, string category1, string linkProperty1, string basePath = ".")
                 : base(id1, name1, message1, "", new List<MainLine>(), template1, basePath)
         {
-            id = id1;
-            name = name1;
-            template = template1;
             linkProperty = linkProperty1;
             sections= sections1;
 

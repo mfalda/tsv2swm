@@ -25,7 +25,7 @@ namespace TSV2SMW
     /// <summary>
     /// Class <c>Property</c> models a MediaWiki property page.
     /// </summary>
-    class Property : Page
+    public class Property : Page
     {
         public InputType type;
         string superProperty;
@@ -47,7 +47,8 @@ namespace TSV2SMW
         /// <param name="constraints1">a comma-separated list of contraints coming from the input domain.</param>
         /// <param name="options1">a set of options specified in input.</param>
         /// <param name="propertyGroup1">the group of the property (tipically rendered as a tab).</param>
-        public Property(int id1, string name1, string superProperty1, InputType type1, string constraints1, List<OptionType> options1, string propertyGroup1)
+        /// <param name="basePath1">the path where auxiary templates are stored (for unit tests, mainly).</param>
+        public Property(int id1, string name1, string superProperty1, InputType type1, string constraints1, List<OptionType> options1, string propertyGroup1, string basePath = ".")
         {
             id = id1;
             name = name1;
@@ -67,7 +68,7 @@ namespace TSV2SMW
             propertyGroup = (propertyGroup1 != "") ? $"[[Category: {propertyGroup1}]]" : "";
 
             if (templateXML == null) {
-                using (var reader = new StreamReader(@"templates/property.xml")) {
+                using (var reader = new StreamReader(basePath + "/templates/property.xml")) {
                     templateXML = reader.ReadToEnd();
                 }
             }
