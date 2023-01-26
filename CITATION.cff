@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Falda"
+  given-names: "Marco"
+  orcid: "https://orcid.org/0000-0003-2642-519X"
+- family-names: "Atzori"
+  given-names: "Manfredo"
+  orcid: "https://orcid.org/0000-0001-5397-2063"
+- family-names: "Corbetta"
+  given-names: "Maurizio"
+  orcid: "https://orcid.org/0000-0001-8295-3304"
+title: "My Research Software"
+doi: 10.1038/s41598-023-27743-9
+date-released: 2023-01-19
+url: "https://www.nature.com/articles/s41598-023-27743-9"
