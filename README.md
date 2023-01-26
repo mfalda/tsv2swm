@@ -22,8 +22,16 @@ The code uses XML snippets (templates) for each type of MediaWiki namespace, nam
 
 There is also a set of simple pages to be added directly, and they are customized according to the desired (natural) language. Their parametrization it kept at minimum, being possible only two placeholders for singular (forms) and plural (categories) names.
 
+## Citing this work
 
-## TSV schema grammar
+If you find this tool useful please cite:
+
+> Falda, M., Atzori, M. & Corbetta, M. Semantic wikis as flexible database interfaces for biomedical applications. Sci Rep 13, 1095 (2023). https://doi.org/10.1038/s41598-023-27743-9
+
+See also "Cite this repository" on the top right menu for BibTeX and APA formats.
+
+
+## Appendix: TSV schema grammar
 
 
 ```
